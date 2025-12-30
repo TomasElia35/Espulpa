@@ -1,0 +1,52 @@
+<div class="detalle-container" *ngIf="libro; else loading">
+  
+  <div class="detalle-grid">
+    <div class="galeria">
+      <div class="imagen-principal">
+        <img [src]="imagenSeleccionada || 'assets/placeholder-book.png'" [alt]="libro.titulo">
+      </div>
+      <div class="miniaturas" *ngIf="libro.imagenes && libro.imagenes.length > 1">
+        <img 
+          *ngFor="let img of libro.imagenes" 
+          [src]="img.urlImagen" 
+          (click)="cambiarImagen(img.urlImagen)"
+          [class.active]="img.urlImagen === imagenSeleccionada"
+        >
+      </div>
+    </div>
+
+    <div class="info-completa">
+      <h1 class="titulo">{{ libro.titulo }}</h1>
+      <h3 class="autor">Autor: <span>{{ libro.autor.nombre }}</span></h3>
+      
+      <div class="meta-data">
+        <span class="categoria" *ngFor="let cat of libro.categorias">{{ cat.nombre }}</span>
+        <span class="fecha">Publicado: {{ libro.fechaPublicacion | date:'mediumDate' }}</span>
+      </div>
+
+      <div class="precio-box" *ngIf="libro.precioObj">
+        <span class="precio-label">Precio:</span>
+        <span class="precio-valor">{{ libro.precioObj.precioFinal | currency:'USD' }}</span>
+      </div>
+
+      <div class="descripcion">
+        <h4>Sinopsis</h4>
+        <p>{{ libro.detalle }}</p>
+      </div>
+
+      <div class="stock-info" *ngIf="libro.stock">
+        <p>Disponibilidad: 
+            <span [class.disponible]="true">En Stock</span> 
+        </p>
+      </div>
+
+      <button class="btn-comprar">Añadir al Carrito</button>
+      <a routerLink="/catalogo" class="btn-volver">Volver al catálogo</a>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <div class="cargando">Cargando información del libro...</div>
+</ng-template>

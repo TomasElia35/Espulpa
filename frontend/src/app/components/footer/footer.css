@@ -1,0 +1,39 @@
+.footer {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding-top: 2rem;
+  margin-top: auto; /* Empuja el footer al fondo si hay poco contenido */
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem 5%;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-section h3 {
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  background-color: #1a252f;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}

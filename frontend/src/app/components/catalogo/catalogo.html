@@ -1,1 +1,30 @@
-<p>catalogo works!</p>
+<div class="catalogo-container">
+  <h2>Nuestro Catálogo</h2>
+  
+  <div class="grid-libros">
+    <div class="card-libro" *ngFor="let libro of libros">
+      
+      <div class="imagen-container">
+        <img 
+          [src]="libro.imagenes && libro.imagenes.length > 0 ? libro.imagenes[0].urlImagen : 'assets/placeholder-book.png'" 
+          [alt]="libro.titulo"
+          class="img-libro"
+        >
+      </div>
+
+      <div class="info-basica">
+        <h3>{{ libro.titulo }}</h3>
+        <p class="autor">Por: {{ libro.autor.nombre }}</p>
+        
+        <p class="precio" *ngIf="libro.precioObj">
+          {{ libro.precioObj.precioFinal | currency:'USD':'symbol':'1.2-2' }}
+        </p>
+
+        <a [routerLink]="['/libro', libro.id]" class="btn-ver-mas">
+          Ver Detalles
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
