@@ -20,15 +20,20 @@ export class DetalleLibro implements OnInit {
     private libroService: LibroService
   ) {}
 
-  ngOnInit(): void {
-    // Escuchamos el ID de la URL
-    this.route.paramMap.subscribe(params => {
-      const id = Number(params.get('id'));
-      if (id) {
-        this.obtenerDetalle(id);
-      }
-    });
-  }
+ngOnInit(): void {
+  this.route.paramMap.subscribe(params => {
+    const id = Number(params.get('id'));
+    
+    // Verificamos que sea un número válido
+    if (id && !isNaN(id)) {
+      this.obtenerDetalle(id);
+    } else {
+      // SI NO HAY ID, apagamos el loading y mostramos error o redirigimos
+      console.error('ID de libro no válido');
+      this.loading = false; 
+    }
+  });
+}
 
   obtenerDetalle(id: number): void {
     this.loading = true;

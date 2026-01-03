@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LibroService } from '../../services/libro.service';
@@ -16,22 +16,26 @@ export class Catalogo {
   loading: boolean = true;
   busqueda: string = '';
 
-  constructor(private libroService: LibroService) {}
-
+constructor(
+    private libroService: LibroService,
+    private cd: ChangeDetectorRef // 2. Inyectar
+  ) {}
   ngOnInit(): void {
     this.cargarLibros();
   }
 
-  cargarLibros(): void {
+cargarLibros(): void {
     this.loading = true;
     this.libroService.listarLibros().subscribe({
       next: (data) => {
         this.libros = data;
         this.loading = false;
+        this.cd.detectChanges(); // 3. Forzar actualización de la vista
       },
       error: (err) => {
         console.error('Error al cargar libros', err);
         this.loading = false;
+        this.cd.detectChanges(); // También en error por si acaso
       }
     });
   }
