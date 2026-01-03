@@ -1,0 +1,96 @@
+@use 'sass:color';
+
+// --- PALETA EDITORIAL ---
+$primary-color: #d63333; // Rojo Tinta (Color de acento)
+$bg-paper: #fcfbf9;      // Color Papel (Fondo)
+$text-dark: #2c2c2c;     // Texto principal
+
+.modern-navbar {
+  // Fondo sólido color papel para mejor lectura
+  background-color: rgba($bg-paper, 0.98); 
+  border-bottom: 1px solid rgba(0,0,0,0.08); // Línea sutil separadora
+  padding: 15px 0;
+  transition: all 0.3s ease;
+
+  // Ajuste del Logo
+  .logo-img {
+    height: 45px; // Un poco más grande para destacar
+    width: auto;
+  }
+
+  // Nombre de la marca (Tipografía Serif)
+  .brand-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $text-dark;
+    letter-spacing: 0.5px;
+  }
+
+  // Enlaces de navegación
+  .nav-link {
+    font-family: 'Lato', sans-serif;
+    color: #555 !important;
+    font-weight: 400;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 10px;
+    position: relative;
+    transition: color 0.3s ease;
+
+    &:hover, &.active {
+      color: $primary-color !important;
+    }
+
+    // Subrayado sutil al estilo "editorial" (más fino)
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px; // Muy fino
+      bottom: 2px;
+      left: 0;
+      background-color: $primary-color;
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  // Botón de Contacto (Estilo Sello/Rectangular)
+  .btn-cta {
+    background-color: $text-dark; // Negro suave en lugar de rojo chillón
+    color: #fff;
+    border: 1px solid $text-dark;
+    border-radius: 2px; // Bordes casi rectos (estilo libro)
+    padding: 8px 25px;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: transparent;
+      color: $text-dark;
+    }
+  }
+}
+
+// Ajustes para menú móvil
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: $bg-paper;
+    padding: 20px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    margin-top: 15px;
+  }
+  
+  .btn-cta {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

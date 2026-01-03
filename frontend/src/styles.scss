@@ -1,0 +1,19 @@
+/* src/styles.scss */
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+/* Importamos fuentes: 
+   - 'Playfair Display': Elegante, para títulos (estilo libro).
+   - 'Lato': Limpia, para textos largos y menús. 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #fcfbf9; /* Color "Hueso" o Papel antiguo, no blanco clínico */
+  color: #2c2c2c; /* Gris muy oscuro, mejor que negro puro para leer */
+}
+
+h1, h2, h3, h4, h5, .navbar-brand {
+  font-family: 'Playfair Display', serif; /* Toque editorial */
+}

@@ -1,0 +1,106 @@
+<section class="contacto-section">
+  <div class="container">
+    
+    <div class="row justify-content-center mb-5 text-center">
+      <div class="col-lg-8">
+        <h6 class="text-danger text-uppercase fw-bold tracking-wide small mb-2">Hablemos</h6>
+        <h2 class="display-5 title-serif">Contacto y Manuscritos</h2>
+        <p class="text-muted mt-3 font-serif">
+          ¿Tienes una duda sobre tu pedido o quieres enviarnos tu obra? 
+          Completa el formulario y te responderemos con la calma que merece la lectura.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-5">
+      
+      <div class="col-lg-5 order-2 order-lg-1">
+        <div class="info-box p-4 h-100">
+          <h4 class="title-serif mb-4">La Editorial</h4>
+          
+          <div class="d-flex mb-4">
+            <div class="icon-wrap me-3"><i class="bi bi-geo-alt"></i></div>
+            <div>
+              <h6 class="fw-bold mb-1">Dirección</h6>
+              <p class="text-muted small">Calle Falsa 123, Buenos Aires<br>Argentina</p>
+            </div>
+          </div>
+
+          <div class="d-flex mb-4">
+            <div class="icon-wrap me-3"><i class="bi bi-envelope"></i></div>
+            <div>
+              <h6 class="fw-bold mb-1">Email</h6>
+              <p class="text-muted small">hola@espulpa.com.ar</p>
+            </div>
+          </div>
+
+          <div class="d-flex mb-4">
+            <div class="icon-wrap me-3"><i class="bi bi-whatsapp"></i></div>
+            <div>
+              <h6 class="fw-bold mb-1">WhatsApp</h6>
+              <p class="text-muted small">+54 9 11 1234 5678</p>
+            </div>
+          </div>
+
+          <hr class="my-4 opacity-25">
+
+          <p class="small fst-italic text-secondary">
+            "La poesía no es de quien la escribe, sino de quien la necesita."
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-7 order-1 order-lg-2">
+        <div class="form-paper p-4 p-md-5 shadow-sm">
+          
+          <div *ngIf="mensajeExito" class="alert alert-success rounded-0 mb-4 text-center">
+            <i class="bi bi-check-circle me-2"></i> ¡Mensaje recibido! Te responderemos pronto.
+          </div>
+          
+          <div *ngIf="mensajeError" class="alert alert-danger rounded-0 mb-4 text-center">
+            Ocurrió un error al enviar. Intenta por WhatsApp.
+          </div>
+
+          <form (ngSubmit)="onSubmit()" #contactForm="ngForm" *ngIf="!mensajeExito">
+            
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small text-uppercase text-muted">Nombre</label>
+                <input type="text" class="form-control custom-input" 
+                       [(ngModel)]="formulario.nombre" name="nombre" required>
+              </div>
+              
+              <div class="col-md-6">
+                <label class="form-label small text-uppercase text-muted">Celular</label>
+                <input type="tel" class="form-control custom-input" 
+                       [(ngModel)]="formulario.celular" name="celular">
+              </div>
+
+              <div class="col-12">
+                <label class="form-label small text-uppercase text-muted">Email</label>
+                <input type="email" class="form-control custom-input" 
+                       [(ngModel)]="formulario.email" name="email" required>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label small text-uppercase text-muted">Mensaje</label>
+                <textarea class="form-control custom-input" rows="5" 
+                          [(ngModel)]="formulario.mensaje" name="mensaje" required></textarea>
+              </div>
+
+              <div class="col-12 mt-4">
+                <button type="submit" class="btn btn-dark w-100 rounded-0 py-3 text-uppercase fw-bold"
+                        [disabled]="enviando">
+                  <span *ngIf="enviando" class="spinner-border spinner-border-sm me-2"></span>
+                  {{ enviando ? 'Enviando...' : 'Enviar Mensaje' }}
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

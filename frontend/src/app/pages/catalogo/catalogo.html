@@ -1,0 +1,75 @@
+<section class="catalogo-section">
+  <div class="container">
+    
+    <div class="row mb-5 align-items-end">
+      <div class="col-md-6">
+        <h6 class="text-danger text-uppercase fw-bold tracking-wide small mb-2">Librería</h6>
+        <h2 class="display-5 title-serif">Nuestro Catálogo</h2>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="search-wrapper mt-3 mt-md-0">
+          <input 
+            type="text" 
+            class="form-control search-input" 
+            placeholder="Buscar por título o autor..." 
+            [(ngModel)]="busqueda"
+            (keyup.enter)="buscar()">
+          <button class="btn-search" (click)="buscar()">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="loading" class="text-center py-5">
+      <div class="spinner-border text-danger" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+
+    <div *ngIf="!loading" class="row g-4">
+      
+      <div *ngIf="libros.length === 0" class="col-12 text-center py-5">
+        <p class="text-muted fst-italic">No encontramos libros que coincidan con tu búsqueda.</p>
+        <button class="btn btn-outline-dark btn-sm rounded-0" (click)="busqueda=''; cargarLibros()">Ver todos</button>
+      </div>
+
+      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let libro of libros">
+        <div class="book-card h-100">
+          
+          <div class="book-cover mb-3" [routerLink]="['/libro', libro.id]">
+            <img 
+              [src]="libro.imagenes && libro.imagenes.length > 0 ? libro.imagenes[0].urlImagen : ''" 
+              [alt]="libro.titulo" 
+              class="img-fluid shadow-sm">
+              
+            <div class="overlay">
+              <button class="btn btn-light btn-sm rounded-0 px-3" [routerLink]="['/libro', libro.id]">Ver Detalle</button>
+            </div>
+          </div>
+
+          <div class="book-info text-center px-2">
+            <h5 class="book-title text-truncate" [title]="libro.titulo">
+              {{ libro.titulo }}
+            </h5>
+            <p class="book-author text-muted small text-uppercase mb-2">
+              {{ libro.autor.nombre }}
+            </p>
+            
+            <div class="book-price">
+              <span *ngIf="libro.precioObj" class="fw-bold text-danger">
+                ${{ libro.precioObj.precioFinal }}
+              </span>
+              <span *ngIf="!libro.precioObj" class="text-muted small fst-italic">
+                Consultar
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
