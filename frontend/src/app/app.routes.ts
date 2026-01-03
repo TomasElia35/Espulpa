@@ -13,6 +13,7 @@ export const routes: Routes = [
   { path: 'catalogo', component: Catalogo },
   { path: 'libro/:id', component: DetalleLibro },
   { path: 'contacto', component: Contacto },
+  
   // Opcional: Redirigir cualquier ruta desconocida al Home
   { path: '**', redirectTo: '' }
 ];
