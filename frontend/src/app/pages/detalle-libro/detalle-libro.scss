@@ -1,0 +1,87 @@
+@use 'sass:color';
+
+$primary-color: #d63333;
+$bg-paper: #fcfbf9;
+$text-dark: #2c2c2c;
+
+.detalle-section {
+  background-color: $bg-paper;
+  min-height: 100vh;
+  padding-top: 120px; // Espacio para navbar
+  padding-bottom: 80px;
+
+  .title-serif {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: $text-dark;
+    letter-spacing: -0.5px;
+  }
+
+  .author-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+  }
+
+  // --- PORTADA CON SOMBRA REALISTA ---
+  .portada-wrapper {
+    padding: 20px;
+    background-color: #fff; // Marco blanco sutil opcional
+    display: inline-block;
+    
+    .portada-libro {
+      max-width: 100%;
+      height: auto;
+      box-shadow: 
+        -15px 15px 25px rgba(0,0,0,0.15), // Sombra lejana
+        -5px 5px 10px rgba(0,0,0,0.1);    // Sombra cercana
+      transform: rotate(-1deg); // Sutil inclinación "humana"
+      transition: transform 0.3s ease;
+    }
+  }
+
+  // --- TEXTOS ---
+  .synopsis-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8; // Muy importante para que se lea como libro
+    color: #555;
+    text-align: justify; // Opcional, da look de página impresa
+  }
+
+  // --- BADGE ---
+  .badge {
+    background-color: $primary-color !important;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+
+  // --- BOTONES ---
+  .btn {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+  }
+}
+
+// Responsivo
+@media (max-width: 768px) {
+  .detalle-section {
+    text-align: center;
+    
+    .synopsis-text {
+      text-align: left;
+    }
+
+    .d-flex {
+      justify-content: center; // Centrar botones en móvil
+    }
+  }
+}

@@ -30,3 +30,12 @@ export interface Libro {
   stock?: any;
   imagenes?: Imagen[];
 }
+
+export interface InfoContacto{
+  id?: number;
+  nombre: string;
+  email: string;
+  celular: string;
+  mensaje: string;
+  fecha?: string;
+}
