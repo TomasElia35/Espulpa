@@ -1,0 +1,113 @@
+@use 'sass:color';
+
+// Variables Globales
+$primary-color: #d63333;
+$bg-paper: #fcfbf9;
+$text-dark: #2c2c2c;
+
+.catalogo-section {
+  background-color: $bg-paper;
+  min-height: 100vh;
+  padding-top: 120px; // Espacio para el navbar fijo
+  padding-bottom: 80px;
+
+  .title-serif {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: $text-dark;
+  }
+
+  // --- ESTILO DEL BUSCADOR ---
+  .search-wrapper {
+    position: relative;
+    max-width: 400px;
+    margin-left: auto; // Alinear a la derecha
+
+    .search-input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #ccc; // Solo línea abajo
+      border-radius: 0;
+      padding-right: 40px;
+      font-family: 'Lato', sans-serif;
+      
+      &:focus {
+        box-shadow: none;
+        border-color: $primary-color;
+      }
+    }
+
+    .btn-search {
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: none;
+      border: none;
+      color: #777;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  // --- TARJETA DE LIBRO ---
+  .book-card {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-5px); // Sube un poco al pasar el mouse
+
+      .book-cover .overlay {
+        opacity: 1; // Muestra el botón
+      }
+    }
+
+    .book-cover {
+      position: relative;
+      background-color: #f0f0f0; // Fondo por si la imagen tarda en cargar
+      aspect-ratio: 2 / 3; // Mantiene proporción de libro vertical
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // Asegura que llene el espacio sin estirarse
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.3); // Oscurece un poco
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0; // Oculto por defecto
+        transition: opacity 0.3s ease;
+      }
+    }
+
+    .book-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+      color: $text-dark;
+    }
+
+    .book-author {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .book-price {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.1rem;
+    }
+  }
+}

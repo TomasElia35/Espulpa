@@ -1,0 +1,91 @@
+@use 'sass:color';
+
+// --- PALETA ---
+$primary-color: #d63333; // Rojo Tinta
+$bg-footer: #252422;     // "Warm Black" (Negro café), más cálido que el negro puro
+$text-light: #f4f1ea;    // Blanco hueso
+$text-muted: #9e9b97;    // Gris cálido
+
+.modern-footer {
+  background-color: $bg-footer;
+  color: $text-light;
+  font-family: 'Lato', sans-serif;
+  border-top: 4px solid $primary-color; // Detalle de color superior
+
+  // Títulos en Serif (Identidad Editorial)
+  .footer-brand, .footer-title {
+    font-family: 'Playfair Display', serif;
+    color: $text-light;
+  }
+
+  .footer-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-title {
+    font-size: 1.1rem;
+    font-weight: 400; // Más fino, más elegante
+    font-style: italic; // Toque clásico
+    margin-bottom: 1.2rem;
+  }
+
+  // Enlaces
+  .footer-link {
+    color: $text-muted;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-block;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $primary-color; // Se ilumina en rojo
+      padding-left: 5px; // Pequeño desplazamiento
+    }
+  }
+
+  // Redes Sociales (Minimalistas)
+  .social-icons {
+    display: flex;
+    gap: 15px;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.1); // Borde fino
+      border-radius: 50%; 
+      color: $text-light;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        color: #fff;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .footer-divider {
+    border-color: rgba(255, 255, 255, 0.08);
+    margin: 30px 0;
+  }
+
+  .copyright-text {
+    font-size: 0.8rem;
+    color: $text-muted;
+    letter-spacing: 0.5px;
+    
+    // Opcional: poner el año en fuente serif
+    span { 
+        font-family: 'Playfair Display', serif; 
+    }
+  }
+}
