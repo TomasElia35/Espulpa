@@ -38,19 +38,16 @@ public class Libro {
     private List<Categoria> categorias;
 
     // RELACIONES SATÉLITE (1 a 1)
-
-    @OneToOne(mappedBy = "libro", cascade = CascadeType.ALL)
+// Las relaciones 1 a 1 deben tener cascade = ALL y orphanRemoval = true (opcional pero recomendado)
+    @OneToOne(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private Precio precioObj;
 
-    @OneToOne(mappedBy = "libro", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private Stock stock;
 
-    @OneToOne(mappedBy = "libro", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private DetalleLibro detalle;
 
-    // RELACIÓN IMÁGENES (CORREGIDO a Lista)
-    // Usamos OneToMany porque la tabla T_Imagenes apunta hacia el libro.
-    // Así podrás tener portada y contraportada si quieres.
-    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Imagen> imagenes;
 }

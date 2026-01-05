@@ -1,0 +1,35 @@
+@use 'sass:color';
+
+$primary-color: #d63333;
+$bg-paper: #fcfbf9;
+
+.admin-section {
+  background-color: $bg-paper;
+  padding-top: 120px;
+  padding-bottom: 80px;
+  min-height: 100vh;
+
+  .title-serif {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+  }
+
+  .form-paper {
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .custom-input {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    padding: 10px 0;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+
+    &:focus {
+      box-shadow: none;
+      border-color: $primary-color;
+    }
+  }
+}
