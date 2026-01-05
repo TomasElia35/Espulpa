@@ -1,0 +1,105 @@
+<section class="admin-section">
+  <div class="container">
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <h6 class="text-danger text-uppercase fw-bold mb-2">Panel Administrativo</h6>
+        <h2 class="display-6 title-serif mb-4">Publicar Nuevo Título</h2>
+
+        <div *ngIf="mensajeExito" class="alert alert-success rounded-0 text-center mb-4">
+          <i class="bi bi-check-circle-fill me-2"></i> Libro guardado con éxito. Redirigiendo...
+        </div>
+
+        <div *ngIf="mensajeError" class="alert alert-danger rounded-0 text-center mb-4">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i> Error al guardar. Verifica que la imagen no sea gigante o revisa la consola.
+        </div>
+
+        <form (ngSubmit)="guardarLibro()" #libroForm="ngForm" class="form-paper p-4 p-md-5 shadow-sm" *ngIf="!mensajeExito">
+          
+          <div class="row g-3 mb-4">
+            <div class="col-md-8">
+              <label class="form-label text-muted small text-uppercase">Título</label>
+              <input type="text" class="form-control custom-input" name="titulo" 
+                     [(ngModel)]="nuevoLibro.titulo" required placeholder="Ej: Rayuela">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-muted small text-uppercase">Fecha</label>
+              <input type="date" class="form-control custom-input" name="fecha" 
+                     [(ngModel)]="nuevoLibro.fechaPublicacion" required>
+            </div>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="form-label text-muted small text-uppercase">Autor</label>
+              <input type="text" class="form-control custom-input" name="autor" 
+                     [(ngModel)]="nuevoLibro.autor!.nombre" required placeholder="Nombre (el sistema buscará si existe)">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-muted small text-uppercase">Categorías</label>
+              <input type="text" class="form-control custom-input" name="categorias" 
+                     [(ngModel)]="categoriasInput" placeholder="Ej: Novela, Ficción, Drama (Separar por comas)">
+            </div>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="form-label text-muted small text-uppercase">Precio Final ($)</label>
+              <input type="number" class="form-control custom-input" name="precio" 
+                     [(ngModel)]="nuevoLibro.precioObj!.precioFinal" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-muted small text-uppercase">Stock Inicial</label>
+              <input type="number" class="form-control custom-input" name="stock" 
+                     [(ngModel)]="nuevoLibro.stock!.stockActual" required>
+            </div>
+          </div>
+
+          <h5 class="title-serif mt-4 mb-3 fs-6">Ficha Técnica</h5>
+          
+          <div class="row g-3 mb-3">
+             <div class="col-md-4">
+              <label class="form-label text-muted small text-uppercase">Páginas</label>
+              <input type="number" class="form-control custom-input" name="paginas" 
+                     [(ngModel)]="nuevoLibro.detalle!.cantPaginas">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-muted small text-uppercase">Formato</label>
+              <input type="text" class="form-control custom-input" name="formato" 
+                     [(ngModel)]="nuevoLibro.detalle!.formato" placeholder="Ej: Tapa Blanda">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-muted small text-uppercase">ISBN</label>
+              <input type="text" class="form-control custom-input" name="isbn" 
+                     [(ngModel)]="nuevoLibro.detalle!.isbn">
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label text-muted small text-uppercase">Sinopsis</label>
+            <textarea class="form-control custom-input" rows="4" name="descripcion" 
+                      [(ngModel)]="nuevoLibro.detalle!.descripcion"></textarea>
+          </div>
+
+          <div class="mb-5">
+            <label class="form-label text-muted small text-uppercase">Portada del Libro</label>
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control" id="imgInput">
+            
+            <div *ngIf="imagenPrevisualizacion" class="mt-3 text-center bg-light p-3">
+              <img [src]="imagenPrevisualizacion" class="img-fluid shadow-sm" style="max-height: 200px;">
+            </div>
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-dark rounded-0 py-3 text-uppercase fw-bold" [disabled]="enviando">
+              <span *ngIf="enviando" class="spinner-border spinner-border-sm me-2"></span>
+              {{ enviando ? 'Guardando...' : 'Publicar Libro' }}
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
