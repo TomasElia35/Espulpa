@@ -8,29 +8,40 @@
         <h2 class="display-6 title-serif mb-4">Publicar Nuevo Título</h2>
 
         <div *ngIf="mensajeExito" class="alert alert-success rounded-0 text-center mb-4">
-          <i class="bi bi-check-circle-fill me-2"></i> Libro creado correctamente. Redirigiendo...
+          <i class="bi bi-check-circle-fill me-2"></i> Libro guardado con éxito. Redirigiendo...
+        </div>
+
+        <div *ngIf="mensajeError" class="alert alert-danger rounded-0 text-center mb-4">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i> Error al guardar. Verifica que la imagen no sea gigante o revisa la consola.
         </div>
 
         <form (ngSubmit)="guardarLibro()" #libroForm="ngForm" class="form-paper p-4 p-md-5 shadow-sm" *ngIf="!mensajeExito">
           
           <div class="row g-3 mb-4">
             <div class="col-md-8">
-              <label class="form-label text-muted small text-uppercase">Título de la Obra</label>
+              <label class="form-label text-muted small text-uppercase">Título</label>
               <input type="text" class="form-control custom-input" name="titulo" 
                      [(ngModel)]="nuevoLibro.titulo" required placeholder="Ej: Rayuela">
             </div>
             <div class="col-md-4">
-              <label class="form-label text-muted small text-uppercase">Fecha Publicación</label>
+              <label class="form-label text-muted small text-uppercase">Fecha</label>
               <input type="date" class="form-control custom-input" name="fecha" 
                      [(ngModel)]="nuevoLibro.fechaPublicacion" required>
             </div>
           </div>
 
-          <div class="mb-4">
-            <label class="form-label text-muted small text-uppercase">Autor</label>
-            <input type="text" class="form-control custom-input" name="autorNombre" 
-                   [(ngModel)]="nuevoLibro.autor!.nombre" required placeholder="Nombre del Autor">
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="form-label text-muted small text-uppercase">Autor</label>
+              <input type="text" class="form-control custom-input" name="autor" 
+                     [(ngModel)]="nuevoLibro.autor!.nombre" required placeholder="Nombre (el sistema buscará si existe)">
             </div>
+            <div class="col-md-6">
+              <label class="form-label text-muted small text-uppercase">Categorías</label>
+              <input type="text" class="form-control custom-input" name="categorias" 
+                     [(ngModel)]="categoriasInput" placeholder="Ej: Novela, Ficción, Drama (Separar por comas)">
+            </div>
+          </div>
 
           <div class="row g-3 mb-4">
             <div class="col-md-6">
@@ -66,16 +77,18 @@
           </div>
 
           <div class="mb-4">
-            <label class="form-label text-muted small text-uppercase">Sinopsis / Descripción</label>
+            <label class="form-label text-muted small text-uppercase">Sinopsis</label>
             <textarea class="form-control custom-input" rows="4" name="descripcion" 
                       [(ngModel)]="nuevoLibro.detalle!.descripcion"></textarea>
           </div>
 
           <div class="mb-5">
-            <label class="form-label text-muted small text-uppercase">URL de Portada</label>
-            <input type="text" class="form-control custom-input" name="imgUrl" 
-                   [(ngModel)]="imagenUrlInput" placeholder="https://...">
-            <div class="form-text">Pega aquí el enlace directo a la imagen.</div>
+            <label class="form-label text-muted small text-uppercase">Portada del Libro</label>
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control" id="imgInput">
+            
+            <div *ngIf="imagenPrevisualizacion" class="mt-3 text-center bg-light p-3">
+              <img [src]="imagenPrevisualizacion" class="img-fluid shadow-sm" style="max-height: 200px;">
+            </div>
           </div>
 
           <div class="d-grid">

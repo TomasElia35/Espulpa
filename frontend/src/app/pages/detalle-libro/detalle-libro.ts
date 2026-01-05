@@ -56,4 +56,22 @@ export class DetalleLibro implements OnInit {
       }
     });
   }
+
+  // Método para el botón de WhatsApp
+  comprarPorWhatsapp() {
+    if (!this.libro) return;
+
+    // 1. TU NÚMERO DE TELÉFONO (Pon el real de la editorial)
+    // Formato internacional: 549 + código de área + número (sin el 15 si es celular)
+    const numeroTelefono = '5492236688916'; 
+
+    // 2. EL MENSAJE AUTOMÁTICO
+    const mensaje = `Hola Editorial Espulpa, estoy interesado en comprar el libro "${this.libro.titulo}" de ${this.libro.autor?.nombre || 'el autor'}. ¿Tienen stock disponible?`;
+
+    // 3. CREAR LA URL (encodeURIComponent convierte espacios en %20, etc.)
+    const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
+
+    // 4. ABRIR EN NUEVA PESTAÑA
+    window.open(url, '_blank');
+  }
 }
